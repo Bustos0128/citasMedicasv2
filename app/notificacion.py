@@ -1,16 +1,11 @@
 from aplicacion import Aplicacion
-from celular import Celular
-from correo import Correo
+from abc import ABC, abstractmethod
+from persona import Persona
 
+class Notificacion(ABC):
+    def __init__(self, persona: Persona):
+        self.persona = persona
 
-class Notificacion:
-    def __init__(self):
-        self.correo = Correo()
-        self.celular = Celular()
-        self.aplicacion = Aplicacion()
-
-    def enviar_notificacion(self):
-        return self.aplicacion.enviar_notificacion()
-
-    def verificar_correo(self):
-        print(f"Verificando correo {self.correo}")
+    @abstractmethod
+    def enviar_notificacion(self, mensaje: str):
+        pass
